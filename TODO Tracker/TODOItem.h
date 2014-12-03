@@ -10,4 +10,7 @@
 
 @interface TODOItem : NSObject
 
+@property (nonatomic, copy) NSString* title;
+//@property (nonatomic)
+
 @end

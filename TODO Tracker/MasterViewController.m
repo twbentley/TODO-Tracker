@@ -39,12 +39,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender {
-    if (!self.objects) {
+- (void)insertNewObject:(id)sender
+{
+    if (!self.objects)
+    {
         self.objects = [[NSMutableArray alloc] init];
     }
-    [self.objects insertObject:[NSDate date] atIndex:0];
+    
+    TODOItem* item = [[TODOItem alloc] init];
+    item.title = [[NSString alloc] initWithFormat:@"Item %d", self.objects.count + 1];
+    [self.objects insertObject: item atIndex:0];
+    
+     
+    //[self.objects insertObject:[NSDate date] atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
@@ -75,7 +84,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
     NSDate *object = self.objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    
+    // The text for the item cell should be the item's title
+    cell.textLabel.text = [(TODOItem*)object title];
+    
     return cell;
 }
 

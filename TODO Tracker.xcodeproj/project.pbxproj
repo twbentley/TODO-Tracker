@@ -15,6 +15,7 @@
 		3F1EE4D21A2E3E0F00231A29 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F1EE4D11A2E3E0F00231A29 /* Images.xcassets */; };
 		3F1EE4D51A2E3E1000231A29 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1EE4D31A2E3E1000231A29 /* LaunchScreen.xib */; };
 		3F1EE4E11A2E3E1000231A29 /* TODO_TrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1EE4E01A2E3E1000231A29 /* TODO_TrackerTests.m */; };
+		3FC3D8091A2EA2F800D027F5 /* TODOItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC3D8081A2EA2F800D027F5 /* TODOItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		3F1EE4DA1A2E3E1000231A29 /* TODO TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TODO TrackerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F1EE4DF1A2E3E1000231A29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F1EE4E01A2E3E1000231A29 /* TODO_TrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TODO_TrackerTests.m; sourceTree = "<group>"; };
+		3FC3D8071A2EA2F800D027F5 /* TODOItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TODOItem.h; sourceTree = "<group>"; };
+		3FC3D8081A2EA2F800D027F5 /* TODOItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TODOItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,8 @@
 				3F1EE4C61A2E3E0F00231A29 /* AppDelegate.m */,
 				3F1EE4C81A2E3E0F00231A29 /* MasterViewController.h */,
 				3F1EE4C91A2E3E0F00231A29 /* MasterViewController.m */,
+				3FC3D8071A2EA2F800D027F5 /* TODOItem.h */,
+				3FC3D8081A2EA2F800D027F5 /* TODOItem.m */,
 				3F1EE4CB1A2E3E0F00231A29 /* DetailViewController.h */,
 				3F1EE4CC1A2E3E0F00231A29 /* DetailViewController.m */,
 				3F1EE4CE1A2E3E0F00231A29 /* Main.storyboard */,
@@ -224,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FC3D8091A2EA2F800D027F5 /* TODOItem.m in Sources */,
 				3F1EE4C71A2E3E0F00231A29 /* AppDelegate.m in Sources */,
 				3F1EE4CA1A2E3E0F00231A29 /* MasterViewController.m in Sources */,
 				3F1EE4C41A2E3E0F00231A29 /* main.m in Sources */,

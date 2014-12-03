@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TODOItem.h"
 
 @class DetailViewController;
 
 @interface MasterViewController : UITableViewController
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
-
+@property (nonatomic) NSMutableArray* todoItems;
 
 @end
 
