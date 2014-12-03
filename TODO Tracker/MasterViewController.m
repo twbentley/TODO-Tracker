@@ -47,7 +47,7 @@
     }
     
     TODOItem* item = [[TODOItem alloc] init];
-    item.title = [[NSString alloc] initWithFormat:@"Item %d", self.objects.count + 1];
+    item.title = [[NSString alloc] initWithFormat:@"Item %lu", self.objects.count + 1];
     [self.objects insertObject: item atIndex:0];
     
      
@@ -82,6 +82,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    
+//    showsReorderControl property of UITableViewCell objects to YES.
+    cell.showsReorderControl = YES;
 
     NSDate *object = self.objects[indexPath.row];
     
@@ -103,6 +106,11 @@
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+    NSLog(@"moveRowAtIndexPath: %lu", toIndexPath.row );
 }
 
 @end
