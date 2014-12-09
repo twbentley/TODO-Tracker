@@ -48,6 +48,7 @@
     
     TODOItem* item = [[TODOItem alloc] init];
     item.title = [[NSString alloc] initWithFormat:@"Item %lu", self.objects.count + 1];
+    item.dueDate = [NSDate date];
     [self.objects insertObject: item atIndex:0];
     
      
@@ -71,6 +72,12 @@
 }
 
 #pragma mark - Table View
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //((TODOItem*)self.detailViewController.detailItem).dueDate = self.detailViewController.datePicker.date;
+    //NSLog(@"%@", self.detailViewController.detailItem);
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

@@ -11,6 +11,7 @@
 @interface TODOItem : NSObject
 
 @property (nonatomic, copy) NSString* title;
+@property (nonatomic) NSDate* dueDate;
 //@property (nonatomic)
 
 @end
