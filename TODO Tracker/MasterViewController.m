@@ -46,6 +46,7 @@
         self.objects = [[NSMutableArray alloc] init];
     }
     
+    // Make a new TODO item with default values and add to display list
     TODOItem* item = [[TODOItem alloc] init];
     item.title = [[NSString alloc] initWithFormat:@"Item %lu", self.objects.count + 1];
     item.dueDate = [NSDate date];
@@ -77,6 +78,7 @@
 {
     //((TODOItem*)self.detailViewController.detailItem).dueDate = self.detailViewController.datePicker.date;
     //NSLog(@"%@", self.detailViewController.detailItem);
+   // [self.objects[indexPath.row] setTitle:[self.detailViewController.detailItem title]];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -90,7 +92,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-//    showsReorderControl property of UITableViewCell objects to YES.
+    // Enable re-order control in edit mode
     cell.showsReorderControl = YES;
 
     NSDate *object = self.objects[indexPath.row];
