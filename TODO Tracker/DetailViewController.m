@@ -29,6 +29,9 @@
     // Update the user interface for the detail item.
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [self.detailItem description];
+        
+        // Set the title of the detail view to the name of the currently selected object
+        self.titleItem.title = [(TODOItem*)self.detailItem title];
     }
 }
 
