@@ -64,6 +64,9 @@
     // Add "delegate" method for when the date changes in the date picker
     [self.datePicker addTarget:self action:@selector(dateChanged:)
               forControlEvents:UIControlEventValueChanged];
+    
+    [self.tableView setEditing:YES animated:YES];
+    self.tableView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,11 +74,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Date Picker delegate
+
 - (void)dateChanged:(id)sender
 {
     // Update the date in the model
     ((TODOItem*)self.detailItem).dueDate = self.datePicker.date;
 }
+
+#pragma mark - Text Field delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -91,5 +98,32 @@
     
     return YES;
 }
+
+#pragma mark - Table View delegate
+
+- (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+- (BOOL)tableView:(UITableView *)tableView
+canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+//-(void)tableView:editingStyleForRowAtIndexPath:
+//{
+//    
+//}
 
 @end

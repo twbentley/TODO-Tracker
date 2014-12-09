@@ -16,8 +16,10 @@
 @property (strong, nonatomic) id detailItem;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleItem;
-@property (weak, nonatomic) UITextField* titleText;
 @property (weak, nonatomic) IBOutlet UIDatePicker* datePicker;
+@property (weak, nonatomic) IBOutlet UITableView* tableView;
+
+@property (weak, nonatomic) UITextField* titleText;
 
 @end
 

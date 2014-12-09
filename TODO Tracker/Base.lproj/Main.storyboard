@@ -51,6 +51,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eeF-sj-n6h">
+                                <rect key="frame" x="0.0" y="272" width="600" height="328"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -66,6 +70,7 @@
                     <connections>
                         <outlet property="datePicker" destination="X5H-85-Ehj" id="Y0t-2z-MdN"/>
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
+                        <outlet property="tableView" destination="eeF-sj-n6h" id="Jfj-zr-5db"/>
                         <outlet property="titleItem" destination="mOI-FS-AaM" id="fcD-PP-5ef"/>
                     </connections>
                 </viewController>
