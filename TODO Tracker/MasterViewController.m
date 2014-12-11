@@ -32,6 +32,38 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    // Subscribe to AppResignActiveNotification event
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleResignActiveNotification:) name:@"AppResignActiveNotification" object:nil];
+    
+    // Check user data
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    for (int i = 0; i < 1; i++)
+    {
+         NSData *encodedObject = [defaults objectForKey:[NSString stringWithFormat:@"%d", i]];
+        //id object = [defaults objectForKey:[NSString stringWithFormat:@"%d", i]];
+        id object = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+        [self.objects insertObject:object atIndex:i];
+    }
+}
+
+- (void)handleResignActiveNotification:(NSNotification *)notification
+{
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    // Save all objects to user defaults (object:"indexNumber")
+    for(int i = 0; i < self.objects.count; i++)
+    {
+        NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:self.objects[i]];
+
+        [defaults setValue:encodedObject forKey:[NSString stringWithFormat: @"%d", i]];
+    }
+    [defaults synchronize];
+    
+    NSData *encodedObject = [defaults valueForKey:[NSString stringWithFormat:@"%d", 0]];
+    id object = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+    
+    NSLog(@"%@", object);
 }
 
 - (void)didReceiveMemoryWarning {
