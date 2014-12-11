@@ -52,6 +52,9 @@
 
         // Set the date picker date to the current item's due date
         self.datePicker.date = [(TODOItem*)self.detailItem dueDate];
+        
+        // Set the notes of the detail view to the current item's note
+        self.noteView.text = [(TODOItem*)self.detailItem notes];
     }
 }
 
@@ -61,12 +64,12 @@
     // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
     
+    // Have to set delegate for notes here for some reason
+    self.noteView.delegate = self;
+    
     // Add "delegate" method for when the date changes in the date picker
     [self.datePicker addTarget:self action:@selector(dateChanged:)
               forControlEvents:UIControlEventValueChanged];
-    
-    self.tableView.delegate = self;
-    [self.tableView setEditing:YES animated:NO];
     
     // If an item is selected, show the date picker
     if(self.detailItem)
@@ -116,13 +119,18 @@
     ((TODOItem*)self.detailItem).dueDate = self.datePicker.date;
 }
 
-#pragma mark - Text Field delegate
+#pragma mark - Text Field delegates
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     // Close the keyboard
     [textField resignFirstResponder];
     
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
     // Update title in model and view
     ((TODOItem*)self.detailItem).title = ((UITextField*)self.navigationItem.titleView).text;
     UINavigationController *masterController = [self.splitViewController.viewControllers objectAtIndex:0];
@@ -130,6 +138,15 @@
     UITableView *tableView = tableController.tableView;
     [tableView reloadData];
     
+    return YES;
+}
+
+#pragma mark - Text view delegate
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    // Update notes internally
+    ((TODOItem*)self.detailItem).notes = self.noteView.text;
     return YES;
 }
 

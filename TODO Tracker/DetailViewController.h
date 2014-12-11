@@ -13,9 +13,11 @@
 #import "TODOItem.h"	
 #import "MasterViewController.h"
 
-@interface DetailViewController : UIViewController<UITextFieldDelegate, UITableViewDelegate>
+@interface DetailViewController : UIViewController<UITextViewDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) id detailItem;
+@property (weak, nonatomic) UITextField* titleText;
+
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleItem;
 @property (weak, nonatomic) IBOutlet UIButton *calendarButton;
@@ -25,8 +27,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *noteView;
 @property (weak, nonatomic) IBOutlet UILabel *noteLabel;
 @property (weak, nonatomic) IBOutlet UIButton *alarmButton;
-
-@property (weak, nonatomic) UITextField* titleText;
 
 - (void)animateButton:(UIButton*)button;
 

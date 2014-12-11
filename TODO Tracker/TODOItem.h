@@ -12,6 +12,6 @@
 
 @property (nonatomic, copy) NSString* title;
 @property (nonatomic) NSDate* dueDate;
-//@property (nonatomic)
+@property (nonatomic, copy) NSString* notes;
 
 @end
