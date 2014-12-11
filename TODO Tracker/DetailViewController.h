@@ -24,8 +24,11 @@
 @property (weak, nonatomic) IBOutlet UITableView* tableView;
 @property (weak, nonatomic) IBOutlet UITextView *noteView;
 @property (weak, nonatomic) IBOutlet UILabel *noteLabel;
+@property (weak, nonatomic) IBOutlet UIButton *alarmButton;
 
 @property (weak, nonatomic) UITextField* titleText;
+
+- (void)animateButton:(UIButton*)button;
 
 @end
 

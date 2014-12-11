@@ -97,6 +97,10 @@
         self.noteLabel.alpha = 1.0f;
     else
         self.noteLabel.alpha = 0.0f;
+    if(self.detailItem)
+        self.alarmButton.alpha = 1.0f;
+    else
+        self.alarmButton.alpha = 0.0f;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -156,21 +160,24 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 //    
 //}
 
-#pragma mark - Calendar Button
-
-- (IBAction)addToCalendarButtonClick:(id)sender
+- (void)animateButton:(UIButton*)button
 {
-    NSLog(@"button has been pressed");
-    
     // Animate alpha on button press
     [UIView beginAnimations:NULL context:NULL];
     [UIView setAnimationDuration:1.0];
     // Animations to be executed
-    [((UIButton*)sender) setAlpha:0];
-    [((UIButton*)sender) setAlpha:1];
+    [button setAlpha:0];
+    [button setAlpha:1];
     /* end animations to be executed */
     [UIView commitAnimations]; // execute the animations listed above
-  
+}
+
+- (IBAction)addToCalendarButtonClick:(id)sender
+{
+    NSLog(@"Calendar button has been pressed");
+    
+    // Animate the pressing of this button
+    [self animateButton:(UIButton*)sender];
     
     EKEventStore *eventStore = [[EKEventStore alloc] init];
     
@@ -205,6 +212,55 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
              [eventStore saveEvent:event span:EKSpanThisEvent error:&err];
         }}];
 }
+
+- (IBAction)addToAlarmsButtonClick:(id)sender
+{
+    // Animate this button
+    [self animateButton:(UIButton*)sender];
+    
+    // Make a new event store
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    
+    // Bring up alert view to notify user
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Reminder added: %@", self.titleText.text] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Continue", nil];
+    [alertView show];
+    
+    // Authorize the app for access to reminders
+    EKAuthorizationStatus authorizationStatus = [EKEventStore authorizationStatusForEntityType:EKEntityTypeReminder];
+    if (authorizationStatus == EKAuthorizationStatusNotDetermined || authorizationStatus == EKAuthorizationStatusAuthorized)
+    {
+    [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:
+     ^(BOOL granted, NSError *error) {
+         if(granted)
+         {
+             // Create a new reminder
+             EKReminder *reminder = [EKReminder
+                            reminderWithEventStore: eventStore];
+    
+             reminder.title = self.titleText.text;
+
+             reminder.calendar = [eventStore defaultCalendarForNewReminders];
+    
+             NSDate *date = [self.datePicker date];
+    
+             EKAlarm *alarm = [EKAlarm alarmWithAbsoluteDate:date];
+    
+             [reminder addAlarm:alarm];
+    
+             NSError *error = nil;
+    
+             // Save reminder to Reminders
+             [eventStore saveReminder:reminder commit:YES error:&error];
+             
+             if (error)
+                 NSLog(@"error = %@", error);
+             else
+                 NSLog(@"no error");
+         }
+     }];
+    }
+}
+
 
 
 @end

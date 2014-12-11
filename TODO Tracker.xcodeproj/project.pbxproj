@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F0C71CC1A3A2A6F00BAC538 /* calendar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0C71CB1A3A2A6F00BAC538 /* calendar_icon.png */; };
+		3F0C71CE1A3A3E9D00BAC538 /* alarm_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F0C71CD1A3A3E9D00BAC538 /* alarm_icon.png */; };
 		3F1EE4C41A2E3E0F00231A29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1EE4C31A2E3E0F00231A29 /* main.m */; };
 		3F1EE4C71A2E3E0F00231A29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1EE4C61A2E3E0F00231A29 /* AppDelegate.m */; };
 		3F1EE4CA1A2E3E0F00231A29 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1EE4C91A2E3E0F00231A29 /* MasterViewController.m */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		3F0C71CB1A3A2A6F00BAC538 /* calendar_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar_icon.png; sourceTree = "<group>"; };
+		3F0C71CD1A3A3E9D00BAC538 /* alarm_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_icon.png; sourceTree = "<group>"; };
 		3F1EE4BE1A2E3E0F00231A29 /* TODO Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TODO Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F1EE4C21A2E3E0F00231A29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F1EE4C31A2E3E0F00231A29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				3F1EE4DD1A2E3E1000231A29 /* TODO TrackerTests */,
 				3F1EE4BF1A2E3E0F00231A29 /* Products */,
 				3F0C71CB1A3A2A6F00BAC538 /* calendar_icon.png */,
+				3F0C71CD1A3A3E9D00BAC538 /* alarm_icon.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F1EE4D01A2E3E0F00231A29 /* Main.storyboard in Resources */,
+				3F0C71CE1A3A3E9D00BAC538 /* alarm_icon.png in Resources */,
 				3F1EE4D51A2E3E1000231A29 /* LaunchScreen.xib in Resources */,
 				3F0C71CC1A3A2A6F00BAC538 /* calendar_icon.png in Resources */,
 				3F1EE4D21A2E3E0F00231A29 /* Images.xcassets in Resources */,
