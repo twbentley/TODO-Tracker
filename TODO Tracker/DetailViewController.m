@@ -133,32 +133,7 @@
     return YES;
 }
 
-#pragma mark - Table View delegate
-
-- (void)tableView:(UITableView *)tableView
-commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
-           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    int row = indexPath.row;
-    
-    if (self.editing && row == 0) {
-     //   if (automaticEditControlsDidShow)
-            return UITableViewCellEditingStyleInsert;
-        return UITableViewCellEditingStyleDelete;
-    }
-    return UITableViewCellEditingStyleDelete;
-}
-
-//-(void)tableView:editingStyleForRowAtIndexPath:
-//{
-//    
-//}
+#pragma mark - Buttons
 
 - (void)animateButton:(UIButton*)button
 {
@@ -173,9 +148,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 - (IBAction)addToCalendarButtonClick:(id)sender
-{
-    NSLog(@"Calendar button has been pressed");
-    
+{    
     // Animate the pressing of this button
     [self animateButton:(UIButton*)sender];
     
@@ -254,8 +227,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
              
              if (error)
                  NSLog(@"error = %@", error);
-             else
-                 NSLog(@"no error");
          }
      }];
     }
