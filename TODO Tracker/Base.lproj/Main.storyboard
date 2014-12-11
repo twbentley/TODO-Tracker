@@ -32,13 +32,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Detail view content goes here" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
-                                <rect key="frame" x="20" y="292" width="560" height="17"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <datePicker contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="X5H-85-Ehj">
                                 <rect key="frame" x="0.0" y="102" width="600" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="439842377.62676698">
@@ -47,29 +40,59 @@
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Due Date:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hER-zh-4od">
                                 <rect key="frame" x="20" y="124" width="86" height="21"/>
-                                <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eeF-sj-n6h">
-                                <rect key="frame" x="0.0" y="272" width="600" height="328"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="Uh3-X0-fsn">
+                                <rect key="frame" x="56" y="317" width="488" height="263"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Notes:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1Z-T3-gjg">
+                                <rect key="frame" x="56" y="289" width="56" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZbD-Va-1ga">
+                                <rect key="frame" x="558" y="72" width="26" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="26" id="C7J-BW-3Ic"/>
+                                    <constraint firstAttribute="height" constant="26" id="tb3-Uz-ltq"/>
+                                </constraints>
+                                <state key="normal" image="calendar_icon">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addToCalendarButtonClick:" destination="JEX-9P-axG" eventType="touchUpInside" id="3cs-vI-iUT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="X5H-85-Ehj" secondAttribute="trailing" constant="-20" id="02m-4n-YBc"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="Tsc-yG-G1q"/>
-                            <constraint firstItem="X5H-85-Ehj" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-20" id="gXn-bv-7x0"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="jWN-iV-94e"/>
-                            <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" id="tHV-ZD-HQj"/>
+                            <constraint firstItem="Uh3-X0-fsn" firstAttribute="top" secondItem="X5H-85-Ehj" secondAttribute="bottom" constant="53" id="2up-fG-mAA"/>
+                            <constraint firstItem="ZbD-Va-1ga" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="MdB-Oi-a5T"/>
+                            <constraint firstItem="Uh3-X0-fsn" firstAttribute="top" secondItem="P1Z-T3-gjg" secondAttribute="bottom" id="Res-0z-5rQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Uh3-X0-fsn" secondAttribute="trailing" constant="40" id="XV8-tL-cyy"/>
+                            <constraint firstItem="P1Z-T3-gjg" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="42" id="cTM-cm-PFG"/>
+                            <constraint firstItem="Uh3-X0-fsn" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="40" id="cgJ-Ox-A6L"/>
+                            <constraint firstItem="X5H-85-Ehj" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="38" id="eBA-7R-CvZ"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="Uh3-X0-fsn" secondAttribute="bottom" constant="20" id="zKV-Xb-lmS"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
+                        <outlet property="calendarButton" destination="ZbD-Va-1ga" id="UhP-G2-E3t"/>
                         <outlet property="datePicker" destination="X5H-85-Ehj" id="Y0t-2z-MdN"/>
-                        <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
+                        <outlet property="dueDateLabel" destination="hER-zh-4od" id="ena-6Q-Ef2"/>
+                        <outlet property="noteLabel" destination="P1Z-T3-gjg" id="hK9-Bw-Nd3"/>
+                        <outlet property="noteView" destination="Uh3-X0-fsn" id="6gc-Y5-f0e"/>
                         <outlet property="tableView" destination="eeF-sj-n6h" id="Jfj-zr-5db"/>
                         <outlet property="titleItem" destination="mOI-FS-AaM" id="fcD-PP-5ef"/>
                     </connections>
@@ -151,6 +174,9 @@
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="calendar_icon" width="128" height="128"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
     </inferredMetricsTieBreakers>

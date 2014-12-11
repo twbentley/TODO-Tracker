@@ -65,8 +65,38 @@
     [self.datePicker addTarget:self action:@selector(dateChanged:)
               forControlEvents:UIControlEventValueChanged];
     
-    [self.tableView setEditing:YES animated:YES];
     self.tableView.delegate = self;
+    [self.tableView setEditing:YES animated:NO];
+    
+    // If an item is selected, show the date picker
+    if(self.detailItem)
+        self.datePicker.alpha = 1.0f;
+    else
+        self.datePicker.alpha = 0.0f;
+     // If an item is selected, show the calendar button
+    if(self.detailItem)
+        self.calendarButton.alpha = 1.0f;
+    else
+        self.calendarButton.alpha = 0.0f;
+    // If an item is selected, show the label
+    if(self.detailItem)
+        self.dueDateLabel.alpha = 1.0f;
+    else
+        self.dueDateLabel.alpha = 0.0f;
+    // If an item is selected, show the notes box
+    if(self.detailItem)
+    {
+        self.noteView.alpha = 1.0f;
+        self.noteView.layer.borderWidth = 1.0f;
+        self.noteView.layer.borderColor = [[UIColor grayColor] CGColor];
+    }
+    else
+        self.noteView.alpha = 0.0f;
+    // If an item is selected, show the notes label
+    if(self.detailItem)
+        self.noteLabel.alpha = 1.0f;
+    else
+        self.noteLabel.alpha = 0.0f;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,22 +138,73 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     
 }
 
-- (BOOL)tableView:(UITableView *)tableView
-canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
+           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            return NO;
-        }
-    }
+    int row = indexPath.row;
     
-    return YES;
+    if (self.editing && row == 0) {
+     //   if (automaticEditControlsDidShow)
+            return UITableViewCellEditingStyleInsert;
+        return UITableViewCellEditingStyleDelete;
+    }
+    return UITableViewCellEditingStyleDelete;
 }
 
 //-(void)tableView:editingStyleForRowAtIndexPath:
 //{
 //    
 //}
+
+#pragma mark - Calendar Button
+
+- (IBAction)addToCalendarButtonClick:(id)sender
+{
+    NSLog(@"button has been pressed");
+    
+    // Animate alpha on button press
+    [UIView beginAnimations:NULL context:NULL];
+    [UIView setAnimationDuration:1.0];
+    // Animations to be executed
+    [((UIButton*)sender) setAlpha:0];
+    [((UIButton*)sender) setAlpha:1];
+    /* end animations to be executed */
+    [UIView commitAnimations]; // execute the animations listed above
+  
+    
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    
+    // Bring up alert view to notify user
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Event added: %@", self.titleText.text] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Continue", nil];
+    [alertView show];
+    
+    // Give access to calendar
+    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:
+     ^(BOOL granted, NSError *error) {
+        if(granted)
+        {
+            // create/edit your event here
+            EKEvent *event = [EKEvent eventWithEventStore:eventStore];
+            
+            // title of the event
+            event.title = self.titleText.text;
+            
+            // start tomorrow
+            //event.startDate= [[NSDate date] dateByAddingTimeInterval:86400];
+            event.startDate = self.datePicker.date;
+            
+            // duration = 1 h
+            //event.endDate= [[NSDate date] dateByAddingTimeInterval:90000];
+            event.endDate = event.startDate;
+            
+            // set the calendar of the event. - here default calendar
+            [event setCalendar:[eventStore defaultCalendarForNewEvents]];
+            
+            // store the event
+            NSError *err;
+             [eventStore saveEvent:event span:EKSpanThisEvent error:&err];
+        }}];
+}
+
 
 @end
