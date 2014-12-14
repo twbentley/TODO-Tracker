@@ -36,15 +36,29 @@
     // Subscribe to AppResignActiveNotification event
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleResignActiveNotification:) name:@"AppResignActiveNotification" object:nil];
     
+    if (!self.objects)
+    {
+        self.objects = [[NSMutableArray alloc] init];
+    }
+    
     // Check user data
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    for (int i = 0; i < 1; i++)
+    
+    // Get the number of saved objects
+    NSData *encodedCount = [defaults valueForKey:@"COUNT"];
+    id object2 = [NSKeyedUnarchiver unarchiveObjectWithData:encodedCount];
+    NSNumber* num = (NSNumber*)object2;
+    
+    // Grab all the items from the user defaults data
+    for (int i = 0; i < [num integerValue]; i++)
     {
-         NSData *encodedObject = [defaults objectForKey:[NSString stringWithFormat:@"%d", i]];
+         NSData *encodedObject = [defaults valueForKey:[NSString stringWithFormat:@"%d", i]];
         //id object = [defaults objectForKey:[NSString stringWithFormat:@"%d", i]];
         id object = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
         [self.objects insertObject:object atIndex:i];
     }
+    
+    [self.tableView reloadData];
 }
 
 - (void)handleResignActiveNotification:(NSNotification *)notification
@@ -58,12 +72,14 @@
 
         [defaults setValue:encodedObject forKey:[NSString stringWithFormat: @"%d", i]];
     }
+    
+    // Store the number of items as well
+    NSNumber* count = [NSNumber numberWithInt:self.objects.count];
+    NSData* encodedCount = [NSKeyedArchiver archivedDataWithRootObject:count];
+    [defaults setValue: encodedCount forKey:@"COUNT"];
+    
+    // Synchronize data
     [defaults synchronize];
-    
-    NSData *encodedObject = [defaults valueForKey:[NSString stringWithFormat:@"%d", 0]];
-    id object = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
-    
-    NSLog(@"%@", object);
 }
 
 - (void)didReceiveMemoryWarning {
