@@ -96,7 +96,7 @@
     
     // Make a new TODO item with default values and add to display list
     TODOItem* item = [[TODOItem alloc] init];
-    item.title = [[NSString alloc] initWithFormat:@"Item %lu", self.objects.count + 1];
+    item.title = [[NSString alloc] initWithFormat:@"New Item"];
     item.dueDate = [NSDate date];
     [self.objects insertObject: item atIndex:0];
     
