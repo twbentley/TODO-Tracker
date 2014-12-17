@@ -172,7 +172,7 @@
     EKEventStore *eventStore = [[EKEventStore alloc] init];
     
     // Bring up alert view to notify user
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Event added: %@", self.titleText.text] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Continue", nil];
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Calendar event added: %@", self.titleText.text] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Continue", nil];
     [alertView show];
     
     // Give access to calendar
